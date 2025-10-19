@@ -7,20 +7,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 /* ---------------------------------- */
-/* 1. Global & Background (Soft Pink & White) - Fixed Background */
+/* 1. Global & Background (Soft Pink & White) - NO SCROLL */
 /* ---------------------------------- */
 html, body {
   margin: 0; padding: 0;
   height: 100%; width: 100%;
   font-family: 'Playfair Display', serif;
-  color: #6a053c; /* لون نص داكن للوضوح على الخلفية الفاتحة */
+  color: #6a053c;
+  /* الأهم: منع التمرير على الـ body والـ html */
+  overflow: hidden; 
   overflow-x: hidden;
-  background-color: #ffe0f0; /* لون احتياطي */
+  background-color: #ffe0f0; 
 }
 
 #softGradient {
   position: fixed; top: 0; left: 0;
-  width: 100%; height: 100%;
+  width: 100%; 
+  height: 100%; /* تثبيت الارتفاع ليتطابق مع الشاشة فقط */
   z-index: -2;
   /* تدرج لوني ناعم جداً من الوردي الفاتح والأبيض الكريمي */
   background: linear-gradient(135deg, #ffe0f0, #fff0f5, #f5efff, #ffe0f0);
@@ -38,11 +41,17 @@ html, body {
 /* 2. Content Structure */
 /* ---------------------------------- */
 #contentWrapper {
-  min-height: 100vh; /* العودة لارتفاع الشاشة فقط لتبسيط التمرير */
+  height: 100%; 
+  min-height: 100%; 
   padding: 60px 10px;
-  display: flex; flex-direction: column; align-items: center;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  justify-content: flex-start;
   z-index: 10;
   position: relative;
+  /* إضافة تمرير داخلي للمحتوى إذا زاد عن حجم الشاشة */
+  overflow-y: auto; 
 }
 
 #mainContent {
@@ -60,30 +69,31 @@ html, body {
   border-radius: 30px;
   padding: 40px 25px;
   width: 95%;
-  /* ظل وردي ناعم جداً */
   box-shadow: 0 4px 30px rgba(255, 182, 193, 0.4);
   backdrop-filter: blur(10px) saturate(1.2); 
   -webkit-backdrop-filter: blur(10px) saturate(1.2);
-  border: 1px solid rgba(255, 255, 255, 0.9); /* إطار أبيض ناصع للوضوح */
+  border: 1px solid rgba(255, 255, 255, 0.9);
   margin-bottom: 40px;
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 1.5s ease-out, transform 0.1s linear; /* 3D effect transition is fast */
-  transform-style: preserve-3d;
+  transition: opacity 1.5s ease-out, transform 0.1s linear; 
   position: relative;
   overflow: hidden;
 }
-.card.visible { opacity: 1; transform: translateY(0); transition: opacity 1.5s ease-out 0.5s, transform 1.5s ease-out 0.5s; }
+.card.visible { 
+    opacity: 1; 
+    transform: translateY(0); 
+    transition: opacity 1.5s ease-out 0.5s, transform 1.5s ease-out 0.5s; 
+}
 
 /* Reflective Glow Overlay (Subtle shine) */
 .card::before {
     content: '';
     position: absolute; top: 0; left: 0;
-    width: 200%; height: 200%;
+    width: 100%; height: 100%; 
     background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0) 100%);
     opacity: 0.8;
-    transition: transform 0.1s linear;
-    transform: translate(-100%, -100%) rotate(45deg);
+    transform: rotate(45deg); 
     pointer-events: none;
     filter: blur(1px);
 }
@@ -98,7 +108,7 @@ h1 {
   min-font-size: 55px;
   max-font-size: 90px;
   margin: 0 0 10px;
-  color: #ff69b4; /* وردي زاهي للنص الرئيسي */
+  color: #ff69b4; 
   text-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 15px rgba(255,105,180,0.5); 
   opacity: 0;
   transform: translateY(-20px);
@@ -167,7 +177,7 @@ p.lead.visible { opacity: 1; }
 
 /* Small Hearts (Fixed position for reliable rain) */
 .heart {
-  position: fixed; /* العودة لـ fixed لتجنب مشاكل الموقع */
+  position: fixed; 
   top: -10px;
   color: #ffb6c1; 
   text-shadow: 0 0 6px rgba(255,255,255,0.7), 0 0 12px rgba(255,105,180,0.4);
@@ -203,9 +213,9 @@ p.lead.visible { opacity: 1; }
       </p>
 
       <div class="frame" id="frame">
-        <img src="https://drive.google.com/thumbnail?id=1cwf_eUgdN4P7roSRvEbsWVmYCrOh3DH-&sz=w1200" class="show" alt="Image 1">
-        <img src="https://drive.google.com/thumbnail?id=1d-BRb_Ckbmmv2JUFWNs71SaNduYtIEQl&sz=w1200" alt="Image 2">
-        <img src="https://drive.google.com/thumbnail?id=1c6bS7D7wK-V8rTfXb0u3L0k8tH0-D9lQ&sz=w1200" alt="Image 3">
+        <img src="https://drive.google.com/uc?export=view&id=1cwf_eUgdN4P7roSRvEbsWVmYCrOh3DH-" class="show" alt="Image 1">
+        <img src="https://drive.google.com/uc?export=view&id=1d-BRb_Ckbmmv2JUFWNs71SaNduYtIEQl" alt="Image 2">
+        <img src="https://drive.google.com/uc?export=view&id=1c6bS7D7wK-V8rTfXb0u3L0k8tH0-D9lQ" alt="Image 3">
       </div>
       
     </div>
