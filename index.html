@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>🌸 A Gentle Whisper for Roro 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+/* ---------------------------------- */
+/* 1. Global & Background (Soft Pink & White) - Fixed Background */
+/* ---------------------------------- */
+html, body {
+  margin: 0; padding: 0;
+  height: 100%; width: 100%;
+  font-family: 'Playfair Display', serif;
+  color: #6a053c; /* لون نص داكن للوضوح على الخلفية الفاتحة */
+  overflow-x: hidden;
+  background-color: #ffe0f0; /* لون احتياطي */
+}
+
+#softGradient {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -2;
+  /* تدرج لوني ناعم جداً من الوردي الفاتح والأبيض الكريمي */
+  background: linear-gradient(135deg, #ffe0f0, #fff0f5, #f5efff, #ffe0f0);
+  background-size: 400% 400%;
+  animation: softGradientShift 18s ease-in-out infinite;
+}
+
+@keyframes softGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ---------------------------------- */
+/* 2. Content Structure */
+/* ---------------------------------- */
+#contentWrapper {
+  min-height: 100vh; /* العودة لارتفاع الشاشة فقط لتبسيط التمرير */
+  padding: 60px 10px;
+  display: flex; flex-direction: column; align-items: center;
+  z-index: 10;
+  position: relative;
+}
+
+#mainContent {
+  display: none;
+  flex-direction: column; align-items: center; justify-content: flex-start;
+  text-align: center;
+  width: 100%; max-width: 550px;
+}
+
+/* ---------------------------------- */
+/* 3. Card (Soft Glassmorphism) */
+/* ---------------------------------- */
+.card {
+  background: rgba(255, 255, 255, 0.6); /* أبيض شفاف وناعم أكثر */
+  border-radius: 30px;
+  padding: 40px 25px;
+  width: 95%;
+  /* ظل وردي ناعم جداً */
+  box-shadow: 0 4px 30px rgba(255, 182, 193, 0.4);
+  backdrop-filter: blur(10px) saturate(1.2); 
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.9); /* إطار أبيض ناصع للوضوح */
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.5s ease-out, transform 0.1s linear; /* 3D effect transition is fast */
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+}
+.card.visible { opacity: 1; transform: translateY(0); transition: opacity 1.5s ease-out 0.5s, transform 1.5s ease-out 0.5s; }
+
+/* Reflective Glow Overlay (Subtle shine) */
+.card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 200%; height: 200%;
+    background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0) 100%);
+    opacity: 0.8;
+    transition: transform 0.1s linear;
+    transform: translate(-100%, -100%) rotate(45deg);
+    pointer-events: none;
+    filter: blur(1px);
+}
+
+
+/* ---------------------------------- */
+/* 4. Typography (Soft Pink & Clear) */
+/* ---------------------------------- */
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 8vw;
+  min-font-size: 55px;
+  max-font-size: 90px;
+  margin: 0 0 10px;
+  color: #ff69b4; /* وردي زاهي للنص الرئيسي */
+  text-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 15px rgba(255,105,180,0.5); 
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+h1.visible { opacity: 1; transform: translateY(0); }
+
+p.lead {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #884a6c; 
+  line-height: 1.7;
+  margin: 0 0 30px;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out 0.8s;
+  letter-spacing: 0.5px;
+}
+p.lead.visible { opacity: 1; }
+
+/* ---------------------------------- */
+/* 5. Image Frame (Soft Pink Border) */
+/* ---------------------------------- */
+.frame {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 25px;
+  opacity: 0;
+  border: 4px solid #ffb6c1; 
+  box-shadow: 0 0 15px rgba(255, 182, 193, 0.7), 0 0 30px rgba(255, 105, 180, 0.3);
+}
+.frame.visible { opacity: 1; transition: opacity 1.5s ease-in-out 1.5s; }
+
+.frame img {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 1.0s ease-in-out;
+}
+.frame img.show { opacity: 1; }
+
+/* ---------------------------------- */
+/* 6. Torta & Hearts (Fixed Positions) */
+/* ---------------------------------- */
+#tortaWrapper {
+  position: fixed; z-index: 100;
+  width: 320px; height: 320px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.8, 0, 1, 1);
+  box-shadow: 0 0 50px rgba(255, 182, 193, 0.8);
+}
+
+#tortaWrapper.hidden {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.1);
+}
+
+#torta { width: 100%; height: 100%; border: none; pointer-events: none; }
+
+/* Small Hearts (Fixed position for reliable rain) */
+.heart {
+  position: fixed; /* العودة لـ fixed لتجنب مشاكل الموقع */
+  top: -10px;
+  color: #ffb6c1; 
+  text-shadow: 0 0 6px rgba(255,255,255,0.7), 0 0 12px rgba(255,105,180,0.4);
+  font-size: 18px; 
+  animation: fallSmall 7s linear infinite;
+  opacity: 0.8; z-index: 6;
+}
+@keyframes fallSmall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<div id="softGradient"></div>
+
+<div id="contentWrapper">
+
+  <div id="tortaWrapper">
+    <iframe id="torta" src="https://lottie.host/embed/b88c70b0-80c7-4841-abb1-4889b043b53b/q1TWfkyXUs.lottie"></iframe>
+  </div>
+
+  <div id="mainContent">
+    <div class="card" id="mainCard">
+      <h1 id="title">Happy Birthday, Roro 🌸</h1>
+      <p class="lead" id="message">
+        Every moment with you, Raneem, feels like a beautiful story.<br>
+        I never want to end.<br>
+        You have the kindest, purest soul, and somehow you make everything brighter.<br>
+        For three years, you’ve been the best thing that ever happened to me.<br>
+        I care about you more than words can ever say. 💞
+      </p>
+
+      <div class="frame" id="frame">
+        <img src="https://drive.google.com/thumbnail?id=1cwf_eUgdN4P7roSRvEbsWVmYCrOh3DH-&sz=w1200" class="show" alt="Image 1">
+        <img src="https://drive.google.com/thumbnail?id=1d-BRb_Ckbmmv2JUFWNs71SaNduYtIEQl&sz=w1200" alt="Image 2">
+        <img src="https://drive.google.com/thumbnail?id=1c6bS7D7wK-V8rTfXb0u3L0k8tH0-D9lQ&sz=w1200" alt="Image 3">
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<audio id="song" src="https://files.catbox.moe/v36s43.mp3"></audio>
+
+<script>
+const tortaWrapper = document.getElementById("tortaWrapper");
+const main = document.getElementById("mainContent");
+const mainCard = document.getElementById("mainCard");
+const title = document.getElementById("title");
+const message = document.getElementById("message");
+const frame = document.getElementById("frame");
+const song = document.getElementById("song");
+
+// **1. 3D Tilt Effect on Card**
+document.addEventListener('mousemove', (e) => {
+    if (!mainCard.classList.contains('visible')) return;
+    
+    const maxTilt = 4;
+    const rect = mainCard.getBoundingClientRect();
+    
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const tiltX = (e.clientY - centerY) / rect.height;
+    const tiltY = (e.clientX - centerX) / rect.width;
+    
+    const rotateX = tiltX * maxTilt * -1;
+    const rotateY = tiltY * maxTilt;
+    
+    // تطبيق حركة الميلان
+    mainCard.style.transform = `translateY(0) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+// **2. Initial Interaction (Click)**
+tortaWrapper.addEventListener("click", () => {
+  // 1. Audio Fade In
+  song.volume = 0.05;
+  song.play();
+  let v = 0.05;
+  const fade = setInterval(() => { 
+    if (v < 0.7) { 
+      v += 0.01; 
+      song.volume = v; 
+    } else clearInterval(fade); 
+  }, 200);
+
+  // 2. Hide Torta with Sinking Effect
+  tortaWrapper.classList.add("hidden");
+  tortaWrapper.style.pointerEvents = "none";
+
+  // 3. Display and Fade In Content
+  main.style.display = "flex";
+  
+  // Sequential Fade In 
+  setTimeout(() => mainCard.classList.add('visible'), 500);
+  setTimeout(() => title.classList.add('visible'), 1200);
+  setTimeout(() => message.classList.add('visible'), 2000);
+  setTimeout(() => frame.classList.add('visible'), 2800);
+
+  // 4. Falling Hearts Animation (Focused on card area)
+  setTimeout(() => {
+    const cardRect = mainCard.getBoundingClientRect();
+    
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      const symbols = ['🌸', '💖', '✨', '💞'];
+      heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+      
+      // حساب موقع البدء الأفقي لتبدأ القلوب من فوق الكارد مباشرة
+      const viewportLeft = cardRect.left;
+      const cardWidth = cardRect.width;
+      
+      const randomLeft = viewportLeft + Math.random() * cardWidth;
+      heart.style.left = randomLeft + 'px';
+      
+      heart.style.fontSize = (16 + Math.random() * 8) + 'px';
+      heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+      heart.style.animationDelay = (Math.random() * 2) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    // كثافة أعلى لتبدو كالمطر
+    setInterval(createHeart, 150); 
+  }, 3000);
+});
+
+// **3. Image Slideshow Logic**
+const imgs = document.querySelectorAll('#frame img');
+let idx = 0;
+setInterval(() => {
+  imgs[idx].classList.remove('show');
+  idx = (idx + 1) % imgs.length;
+  imgs[idx].classList.add('show');
+}, 4000);
+</script>
+
+</body>
+</html>
