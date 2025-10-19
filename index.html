@@ -76,7 +76,6 @@ html, body {
   margin-bottom: 40px;
   opacity: 0;
   transform: translateY(30px);
-  /* إزالة الـ 3D لزيادة الأداء */
   transition: opacity 1.5s ease-out, transform 1.5s ease-out; 
   position: relative;
   overflow: hidden;
@@ -214,9 +213,9 @@ p.lead.visible { opacity: 1; }
       </p>
 
       <div class="frame" id="frame">
-        <img src="https://drive.google.com/uc?export=view&id=1cwf_eUgdN4P7roSRvEbsWVmYCrOh3DH-" class="show" alt="Image 1" loading="eager">
-        <img src="https://drive.google.com/uc?export=view&id=1d-BRb_Ckbmmv2JUFWNs71SaNduYtIEQl" alt="Image 2" loading="eager">
-        <img src="https://drive.google.com/uc?export=view&id=1c6bS7D7wK-V8rTfXb0u3L0k8tH0-D9lQ" alt="Image 3" loading="eager">
+        <img src="https://drive.google.com/thumbnail?id=1cwf_eUgdN4P7roSRvEbsWVmYCrOh3DH-&sz=w1200" class="show" alt="Image 1" loading="eager">
+        <img src="https://drive.google.com/thumbnail?id=1d-BRb_Ckbmmv2JUFWNs71SaNduYtIEQl&sz=w1200" alt="Image 2" loading="eager">
+        <img src="https://drive.google.com/thumbnail?id=1c6bS7D7wK-V8rTfXb0u3L0k8tH0-D9lQ&sz=w1200" alt="Image 3" loading="eager">
       </div>
       
     </div>
@@ -236,7 +235,7 @@ const frame = document.getElementById("frame");
 const song = document.getElementById("song");
 
 // **تم إلغاء دالة document.addEventListener('mousemove', ...) لزيادة الأداء**
-// **لا يوجد كود إضافي هنا يستهلك موارد المعالج أثناء وضع الخمول**
+// **كما تم إلغاء خاصية التمرير الرئيسية لتسريع التحميل**
 
 // **1. Initial Interaction (Click)**
 tortaWrapper.addEventListener("click", () => {
