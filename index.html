@@ -62,10 +62,10 @@ html, body {
 }
 
 /* ---------------------------------- */
-/* 3. Card (Soft Glassmorphism) */
+/* 3. Card (Soft Glassmorphism) - Simplified for Performance */
 /* ---------------------------------- */
 .card {
-  background: rgba(255, 255, 255, 0.6); /* أبيض شفاف وناعم أكثر */
+  background: rgba(255, 255, 255, 0.6); 
   border-radius: 30px;
   padding: 40px 25px;
   width: 95%;
@@ -76,7 +76,8 @@ html, body {
   margin-bottom: 40px;
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 1.5s ease-out, transform 0.1s linear; 
+  /* إزالة الـ 3D لزيادة الأداء */
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out; 
   position: relative;
   overflow: hidden;
 }
@@ -86,7 +87,7 @@ html, body {
     transition: opacity 1.5s ease-out 0.5s, transform 1.5s ease-out 0.5s; 
 }
 
-/* Reflective Glow Overlay (Subtle shine) */
+/* Reflective Glow Overlay (Static) */
 .card::before {
     content: '';
     position: absolute; top: 0; left: 0;
@@ -213,9 +214,9 @@ p.lead.visible { opacity: 1; }
       </p>
 
       <div class="frame" id="frame">
-        <img src="https://drive.google.com/uc?export=view&id=1cwf_eUgdN4P7roSRvEbsWVmYCrOh3DH-" class="show" alt="Image 1">
-        <img src="https://drive.google.com/uc?export=view&id=1d-BRb_Ckbmmv2JUFWNs71SaNduYtIEQl" alt="Image 2">
-        <img src="https://drive.google.com/uc?export=view&id=1c6bS7D7wK-V8rTfXb0u3L0k8tH0-D9lQ" alt="Image 3">
+        <img src="https://drive.google.com/uc?export=view&id=1cwf_eUgdN4P7roSRvEbsWVmYCrOh3DH-" class="show" alt="Image 1" loading="eager">
+        <img src="https://drive.google.com/uc?export=view&id=1d-BRb_Ckbmmv2JUFWNs71SaNduYtIEQl" alt="Image 2" loading="eager">
+        <img src="https://drive.google.com/uc?export=view&id=1c6bS7D7wK-V8rTfXb0u3L0k8tH0-D9lQ" alt="Image 3" loading="eager">
       </div>
       
     </div>
@@ -234,27 +235,10 @@ const message = document.getElementById("message");
 const frame = document.getElementById("frame");
 const song = document.getElementById("song");
 
-// **1. 3D Tilt Effect on Card**
-document.addEventListener('mousemove', (e) => {
-    if (!mainCard.classList.contains('visible')) return;
-    
-    const maxTilt = 4;
-    const rect = mainCard.getBoundingClientRect();
-    
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    const tiltX = (e.clientY - centerY) / rect.height;
-    const tiltY = (e.clientX - centerX) / rect.width;
-    
-    const rotateX = tiltX * maxTilt * -1;
-    const rotateY = tiltY * maxTilt;
-    
-    // تطبيق حركة الميلان
-    mainCard.style.transform = `translateY(0) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-});
+// **تم إلغاء دالة document.addEventListener('mousemove', ...) لزيادة الأداء**
+// **لا يوجد كود إضافي هنا يستهلك موارد المعالج أثناء وضع الخمول**
 
-// **2. Initial Interaction (Click)**
+// **1. Initial Interaction (Click)**
 tortaWrapper.addEventListener("click", () => {
   // 1. Audio Fade In
   song.volume = 0.05;
