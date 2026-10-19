@@ -7,17 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 /* ---------------------------------- */
-/* 1. Global & Background (Soft Pink & White) - NO SCROLL */
+/* 1. Global & Background (Soft Sky Blue & White) - NO SCROLL */
 /* ---------------------------------- */
 html, body {
   margin: 0; padding: 0;
   height: 100%; width: 100%;
   font-family: 'Playfair Display', serif;
-  color: #6a053c;
+  color: #29465b;
   /* الأهم: منع التمرير على الـ body والـ html */
   overflow: hidden; 
   overflow-x: hidden;
-  background-color: #ffe0f0; 
+  background-color: #e7f6ff; 
 }
 
 #softGradient {
@@ -25,8 +25,8 @@ html, body {
   width: 100%; 
   height: 100%; /* تثبيت الارتفاع ليتطابق مع الشاشة فقط */
   z-index: -2;
-  /* تدرج لوني ناعم جداً من الوردي الفاتح والأبيض الكريمي */
-  background: linear-gradient(135deg, #ffe0f0, #fff0f5, #f5efff, #ffe0f0);
+  /* تدرج لوني ناعم جداً من الأزرق السماوي الفاتح والأبيض الكريمي */
+  background: linear-gradient(135deg, #e7f6ff, #f4fbff, #edf6ff, #e7f6ff);
   background-size: 400% 400%;
   animation: softGradientShift 18s ease-in-out infinite;
 }
@@ -69,7 +69,7 @@ html, body {
   border-radius: 30px;
   padding: 40px 25px;
   width: 95%;
-  box-shadow: 0 4px 30px rgba(255, 182, 193, 0.4);
+  box-shadow: 0 4px 30px rgba(185, 230, 251, 0.4);
   backdrop-filter: blur(10px) saturate(1.2); 
   -webkit-backdrop-filter: blur(10px) saturate(1.2);
   border: 1px solid rgba(255, 255, 255, 0.9);
@@ -100,7 +100,7 @@ html, body {
 
 
 /* ---------------------------------- */
-/* 4. Typography (Soft Pink & Clear) */
+/* 4. Typography (Soft Sky Blue & Clear) */
 /* ---------------------------------- */
 h1 {
   font-family: 'Dancing Script', cursive;
@@ -108,8 +108,8 @@ h1 {
   min-font-size: 55px;
   max-font-size: 90px;
   margin: 0 0 10px;
-  color: #ff69b4; 
-  text-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 15px rgba(255,105,180,0.5); 
+  color: #78c9f2; 
+  text-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 15px rgba(120,201,242,0.5); 
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 1.2s ease-out, transform 1.2s ease-out;
@@ -120,7 +120,7 @@ p.lead {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
   font-weight: 400;
-  color: #884a6c; 
+  color: #526f83; 
   line-height: 1.7;
   margin: 0 0 30px;
   opacity: 0;
@@ -130,7 +130,7 @@ p.lead {
 p.lead.visible { opacity: 1; }
 
 /* ---------------------------------- */
-/* 5. Image Frame (Soft Pink Border) */
+/* 5. Image Frame (Soft Sky Blue Border) */
 /* ---------------------------------- */
 .frame {
   position: relative;
@@ -140,8 +140,8 @@ p.lead.visible { opacity: 1; }
   overflow: hidden;
   margin-top: 25px;
   opacity: 0;
-  border: 4px solid #ffb6c1; 
-  box-shadow: 0 0 15px rgba(255, 182, 193, 0.7), 0 0 30px rgba(255, 105, 180, 0.3);
+  border: 4px solid #b9e6fb; 
+  box-shadow: 0 0 15px rgba(185, 230, 251, 0.7), 0 0 30px rgba(255, 105, 180, 0.3);
 }
 .frame.visible { opacity: 1; transition: opacity 1.5s ease-in-out 1.5s; }
 
@@ -165,7 +165,7 @@ p.lead.visible { opacity: 1; }
   cursor: pointer;
   border-radius: 50%;
   transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.8, 0, 1, 1);
-  box-shadow: 0 0 50px rgba(255, 182, 193, 0.8);
+  box-shadow: 0 0 50px rgba(185, 230, 251, 0.8);
 }
 
 #tortaWrapper.hidden {
@@ -179,8 +179,8 @@ p.lead.visible { opacity: 1; }
 .heart {
   position: fixed; 
   top: -10px;
-  color: #ffb6c1; 
-  text-shadow: 0 0 6px rgba(255,255,255,0.7), 0 0 12px rgba(255,105,180,0.4);
+  color: #b9e6fb; 
+  text-shadow: 0 0 6px rgba(255,255,255,0.7), 0 0 12px rgba(120,201,242,0.4);
   font-size: 18px; 
   animation: fallSmall 7s linear infinite;
   opacity: 0.8; z-index: 6;
@@ -195,27 +195,27 @@ p.lead.visible { opacity: 1; }
   width: min(100%, 760px);
   margin: 8px auto 42px;
   text-align: center;
-  color: #6a053c;
+  color: #29465b;
 }
 .section-kicker {
   text-transform: uppercase;
   letter-spacing: 3px;
   font: 700 .72rem Arial, sans-serif;
-  color: #bd6593;
+  color: #6fa9c9;
   margin: 8px 0 10px;
 }
 #reasonsSection h2 {
   font-family: 'Dancing Script', cursive;
   font-size: clamp(2.5rem, 8vw, 4.4rem);
   line-height: 1.08;
-  color: #e95d9c;
+  color: #63b8e8;
   margin: 0 0 12px;
   text-shadow: 0 2px 14px rgba(255,255,255,.8);
 }
 .section-intro {
   max-width: 540px;
   margin: 0 auto 24px;
-  color: #884a6c;
+  color: #526f83;
   line-height: 1.8;
   font-size: 1rem;
 }
@@ -232,8 +232,8 @@ p.lead.visible { opacity: 1; }
   padding: 17px 12px;
   min-height: 132px;
   background: rgba(255,255,255,.68);
-  color: #6a053c;
-  box-shadow: 0 8px 24px rgba(223,113,164,.12);
+  color: #29465b;
+  box-shadow: 0 8px 24px rgba(105,177,218,.14);
   font: inherit;
   cursor: pointer;
   text-align: center;
@@ -243,13 +243,13 @@ p.lead.visible { opacity: 1; }
 }
 .reason-card:hover, .reason-card:focus-visible {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(223,113,164,.24);
-  outline: 2px solid #f4a5ca;
+  box-shadow: 0 12px 28px rgba(105,177,218,.25);
+  outline: 2px solid #a5dcf7;
   outline-offset: 2px;
 }
 .reason-number {
   display: block;
-  color: #e95d9c;
+  color: #63b8e8;
   font: 700 .75rem Arial, sans-serif;
   letter-spacing: 2px;
   margin-bottom: 9px;
@@ -263,7 +263,7 @@ p.lead.visible { opacity: 1; }
 .reason-hint {
   display: block;
   font: .7rem Arial, sans-serif;
-  color: #b8799b;
+  color: #7da9c1;
   margin-top: 10px;
 }
 .reason-card.open {
@@ -275,13 +275,13 @@ p.lead.visible { opacity: 1; }
 .reason-card.open .reason-title { margin-bottom: 10px; }
 .reason-copy {
   display: block;
-  color: #79536a;
+  color: #5c7485;
   font-size: .9rem;
   line-height: 1.75;
   font-weight: 400;
 }
 #reasonProgress {
-  color: #a46b89;
+  color: #7596aa;
   font: .78rem Arial, sans-serif;
   margin: 18px 0 0;
   letter-spacing: .5px;
@@ -293,13 +293,13 @@ p.lead.visible { opacity: 1; }
   background: rgba(255,255,255,.7);
   border: 1px solid white;
   line-height: 1.9;
-  box-shadow: 0 8px 28px rgba(223,113,164,.12);
+  box-shadow: 0 8px 28px rgba(105,177,218,.14);
 }
 .final-note .signature {
   display: block;
   margin-top: 14px;
   font: 700 2rem 'Dancing Script', cursive;
-  color: #e95d9c;
+  color: #63b8e8;
 }
 @media (max-width: 560px) {
   #contentWrapper { padding: 30px 10px 45px; }
